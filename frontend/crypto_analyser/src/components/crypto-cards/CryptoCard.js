@@ -1,31 +1,75 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
+import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
 import "./CryptoCards.css";
 
-export default function CryptoCard({ cryptoName, lastUpdatedAt }) {
+export default function CryptoCard({ cryptoName }) {
+	const [lastUpdatedAt, setLastUpdatedAt] = useState();
+
+	const [coinInfo, setCoinInfo] = useState(null);
+
+	useEffect(() => {
+		// Load for the first time
+
+		loadData().catch((e) => console.log(e));
+
+		// Set an interval to refresh information after every 30 seconds
+		const coinInfoloadingInterval = setInterval(() => {
+			loadData().catch((e) => console.log(e));
+		}, 1000 * 1000);
+
+		return () => {
+			clearInterval(coinInfoloadingInterval);
+		};
+	}, [cryptoName]);
+
+	const loadData = async () => {
+		console.clear();
+		try {
+			const coinInfo = await fetchInfoForCrypto(cryptoName);
+
+			console.log(coinInfo.data);
+			setCoinInfo(coinInfo.data);
+
+			setLastUpdatedAt(new Date(coinInfo.timestamp).toLocaleString());
+		} catch (error) {}
+	};
+
+	// console.log(coinInfo.priceUsd);
 	return (
 		<Grid item component={Card} xs={12} md={3} className={"card infected"}>
 			<CardContent>
 				<Typography color="textSecondary" gutterBottom>
-					cryptoName
+					{cryptoName}
 				</Typography>
 
 				<Typography variant="h5" gutterBottom>
-					{" "}
 					<CountUp
+						prefix={"$"}
 						start={0}
-						end={!100 ? 0 : 122}
+						end={coinInfo?.priceUsd}
 						duration={2.5}
 						separator=","
+						decimals={3}
 					/>
 				</Typography>
-				<Typography color="textSecondary" gutterBottom>
-					{" "}
-					{lastUpdatedAt}
-				</Typography>
+
 				<Typography variant="body2" gutterBottom>
-					{" "}
+					<span className={"card-headline-text"}>VolumeUsd24Hr:</span>
+					{coinInfo?.volumeUsd24Hr || "UA"}
+				</Typography>
+
+				<Typography variant="body2" gutterBottom>
+					<span className={"card-headline-text"}>
+						changePercent24Hr
+					</span>
+
+					{coinInfo?.changePercent24Hr || "UA"}
+				</Typography>
+
+				<Typography color="textSecondary" gutterBottom>
+					{lastUpdatedAt}
 				</Typography>
 			</CardContent>
 		</Grid>

@@ -1,18 +1,10 @@
 import { Grid } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CryptoCard from "./CryptoCard";
 import "./CryptoCards.css";
 
 const CryptoCards = () => {
-	const [lastUpdatedAt, setLastUpdatedAt] = useState();
-
-	useEffect(() => {
-		setLastUpdatedAt(new Date(Date.now()).toDateString());
-	}, []);
-
-	const loadData = async () => {};
-
-	console.log(lastUpdatedAt);
+	const [coins] = useState(["ethereum", "litecoin", "tron"]);
 
 	return (
 		<div className={"cards-container"}>
@@ -21,7 +13,9 @@ const CryptoCards = () => {
 				// spacing={3}
 				justifyContent="center"
 			>
-				<CryptoCard />
+				{coins.map((coinName, index) => (
+					<CryptoCard key={index} cryptoName={coinName} />
+				))}
 			</Grid>
 		</div>
 	);
