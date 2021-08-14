@@ -1,6 +1,5 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import CountUp from "react-countup";
 import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
 import "./CryptoCards.css";

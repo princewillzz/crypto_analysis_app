@@ -1,25 +1,54 @@
+import {
+	FormControl,
+	FormControlLabel,
+	makeStyles,
+	Radio,
+	RadioGroup,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import "./Charts.css";
-import { tempdata } from "../temdata";
 
-export default function Charts({ selectedcoin }) {
+const useStyles = makeStyles((theme) => ({
+	radioGroup: {
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "center",
+	},
+	timelineRadioSelectBtn: {
+		marginTop: 35,
+	},
+	formControlRadioSelect: {
+		color: "#fff",
+	},
+}));
+
+export default function Charts({ selectedCoin }) {
+	const classes = useStyles();
+
 	const [data, setData] = useState([]);
 
-	useEffect(() => {
-		setData(tempdata.data);
-		// fetch("https://api.coincap.io/v2/assets/bitcoin/history?interval=h1")
-		// 	.then((res) => res.json())
-		// 	.then((data) => setData(data.data))
-		// 	.catch(() => {});
-	}, []);
+	const [selectTimeLine, setSelectTimeLine] = useState("h1");
 
-	console.log(data.length);
+	const handleSelectTimeLineChange = (e) => {
+		setSelectTimeLine(e.target.value);
+	};
+
+	useEffect(() => {
+		// setData(tempdata.data);
+		const URI = `https://api.coincap.io/v2/assets/${selectedCoin}/history?interval=${selectTimeLine}`;
+		fetch(URI)
+			.then((res) => res.json())
+			.then((data) => setData(data.data))
+			.catch(() => {});
+	}, [selectedCoin, selectTimeLine]);
+
+	console.log(data?.length, selectedCoin);
 
 	const datasets = [
 		{
-			data: data.map(({ priceUsd }) => priceUsd),
-			label: "Bitcoin",
+			data: data?.map(({ priceUsd }) => priceUsd),
+			label: selectedCoin,
 			labelFontColor: "#fff",
 			borderColor: "#ffbb3d",
 			fill: false,
@@ -51,10 +80,10 @@ export default function Charts({ selectedcoin }) {
 		},
 	};
 
-	const lineChart = data.length ? (
+	const lineChart = data?.length ? (
 		<Line
 			data={{
-				labels: data.map(({ date }) =>
+				labels: data?.map(({ date }) =>
 					new Date(date).toLocaleDateString()
 				),
 				datasets: datasets,
@@ -63,5 +92,45 @@ export default function Charts({ selectedcoin }) {
 		/>
 	) : null;
 
-	return <div className="container">{lineChart}</div>;
+	return (
+		<>
+			<div className="container">
+				{/* Line chart displaying the plotted points */}
+				{lineChart}
+				{/* Render select between different time views */}
+				<FormControl
+					margin={"dense"}
+					className={classes.timelineRadioSelectBtn}
+					component="fieldset"
+				>
+					<RadioGroup
+						aria-label="timeline"
+						name="timeline"
+						className={classes.radioGroup}
+						value={selectTimeLine}
+						onChange={handleSelectTimeLineChange}
+					>
+						<FormControlLabel
+							value="d1"
+							control={<Radio />}
+							label="Daily"
+							className={classes.formControlRadioSelect}
+						/>
+						<FormControlLabel
+							value="h1"
+							control={<Radio />}
+							label="Hourly"
+							className={classes.formControlRadioSelect}
+						/>
+						<FormControlLabel
+							value="m1"
+							control={<Radio />}
+							label="Montly"
+							className={classes.formControlRadioSelect}
+						/>
+					</RadioGroup>
+				</FormControl>
+			</div>
+		</>
+	);
 }
