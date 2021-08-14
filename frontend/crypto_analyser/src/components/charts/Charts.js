@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import "./Charts.css";
 import { tempdata } from "../temdata";
 
-export default function Charts({ coinList }) {
+export default function Charts({ selectedcoin }) {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {

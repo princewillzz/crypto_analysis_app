@@ -11,11 +11,11 @@ export default function CryptoCard({ cryptoName }) {
 	const [coinInfo, setCoinInfo] = useState(null);
 
 	const loadData = useCallback(async () => {
-		console.clear();
+		// console.clear();
 		try {
 			const coinInfo = await fetchInfoForCrypto(cryptoName);
 
-			console.log(coinInfo.data);
+			// console.log(coinInfo.data);
 			setCoinInfo(coinInfo.data);
 
 			setLastUpdatedAt(new Date(coinInfo.timestamp).toLocaleString());
