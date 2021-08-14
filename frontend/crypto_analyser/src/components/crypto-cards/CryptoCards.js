@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import CryptoCard from "./CryptoCard";
 import "./CryptoCards.css";
 
-const CryptoCards = () => {
-	const [coins] = useState(["ethereum", "litecoin", "tron"]);
-
+const CryptoCards = ({ coins }) => {
 	return (
 		<div className={"cards-container"}>
 			<Grid

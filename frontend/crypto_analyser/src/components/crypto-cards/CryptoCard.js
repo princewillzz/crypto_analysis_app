@@ -1,5 +1,6 @@
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { useCallback } from "react";
 import CountUp from "react-countup";
 import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
 import "./CryptoCards.css";
@@ -8,6 +9,18 @@ export default function CryptoCard({ cryptoName }) {
 	const [lastUpdatedAt, setLastUpdatedAt] = useState();
 
 	const [coinInfo, setCoinInfo] = useState(null);
+
+	const loadData = useCallback(async () => {
+		console.clear();
+		try {
+			const coinInfo = await fetchInfoForCrypto(cryptoName);
+
+			console.log(coinInfo.data);
+			setCoinInfo(coinInfo.data);
+
+			setLastUpdatedAt(new Date(coinInfo.timestamp).toLocaleString());
+		} catch (error) {}
+	}, [cryptoName]);
 
 	useEffect(() => {
 		// Load for the first time
@@ -22,19 +35,7 @@ export default function CryptoCard({ cryptoName }) {
 		return () => {
 			clearInterval(coinInfoloadingInterval);
 		};
-	}, [cryptoName]);
-
-	const loadData = async () => {
-		console.clear();
-		try {
-			const coinInfo = await fetchInfoForCrypto(cryptoName);
-
-			console.log(coinInfo.data);
-			setCoinInfo(coinInfo.data);
-
-			setLastUpdatedAt(new Date(coinInfo.timestamp).toLocaleString());
-		} catch (error) {}
-	};
+	}, [cryptoName, loadData]);
 
 	// console.log(coinInfo.priceUsd);
 	return (
@@ -57,7 +58,17 @@ export default function CryptoCard({ cryptoName }) {
 
 				<Typography variant="body2" gutterBottom>
 					<span className={"card-headline-text"}>VolumeUsd24Hr:</span>
-					{coinInfo?.volumeUsd24Hr || "UA"}
+					{coinInfo?.volumeUsd24Hr ? (
+						<CountUp
+							start={0}
+							end={coinInfo?.volumeUsd24Hr}
+							duration={2.5}
+							separator=","
+							decimals={3}
+						/>
+					) : (
+						"UA"
+					)}
 				</Typography>
 
 				<Typography variant="body2" gutterBottom>
@@ -65,7 +76,18 @@ export default function CryptoCard({ cryptoName }) {
 						changePercent24Hr
 					</span>
 
-					{coinInfo?.changePercent24Hr || "UA"}
+					{/* {coinInfo?.changePercent24Hr || "UA"} */}
+					{coinInfo?.changePercent24Hr ? (
+						<CountUp
+							start={0}
+							end={coinInfo?.changePercent24Hr}
+							duration={2.5}
+							separator=","
+							decimals={3}
+						/>
+					) : (
+						"UA"
+					)}
 				</Typography>
 
 				<Typography color="textSecondary" gutterBottom>
