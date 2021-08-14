@@ -38,7 +38,16 @@ export default function CryptoCard({ cryptoName }) {
 
 	// console.log(coinInfo.priceUsd);
 	return (
-		<Grid item component={Card} xs={12} md={3} className={"card infected"}>
+		<Grid
+			spacing={3}
+			container
+			item
+			component={Card}
+			xs={12}
+			zeroMinWidth
+			md={4}
+			className={"card infected"}
+		>
 			<CardContent>
 				<Typography color="textSecondary" gutterBottom>
 					{cryptoName}

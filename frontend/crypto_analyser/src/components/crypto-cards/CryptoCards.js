@@ -1,4 +1,3 @@
-import { Grid } from "@material-ui/core";
 import React from "react";
 import CryptoCard from "./CryptoCard";
 import "./CryptoCards.css";
@@ -6,15 +5,9 @@ import "./CryptoCards.css";
 const CryptoCards = ({ coins }) => {
 	return (
 		<div className={"cards-container"}>
-			<Grid
-				container
-				// spacing={3}
-				justifyContent="center"
-			>
-				{coins.map((coinName, index) => (
-					<CryptoCard key={index} cryptoName={coinName} />
-				))}
-			</Grid>
+			{coins.map((coinName, index) => (
+				<CryptoCard key={index} cryptoName={coinName} />
+			))}
 		</div>
 	);
 };
