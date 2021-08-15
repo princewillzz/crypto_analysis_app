@@ -2,5 +2,5 @@ import axios from "axios";
 
 export const axiosInstance = axios.create({
 	baseURL: "https://api.coincap.io/v2/",
-	timeout: 1000,
+	timeout: 10000,
 });

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Charts from "./components/charts/Charts";
+import BarChart from "./components/charts/BarChart";
+import LineChart from "./components/charts/LineChart";
 import CoinPicker from "./components/CoinPicker/CoinPicker";
 import CryptoCards from "./components/crypto-cards/CryptoCards";
 
@@ -10,7 +11,6 @@ function App() {
 	const [selectedCoin, setSelectedCoin] = useState("");
 
 	const handleCoinChangeFromCoinPicker = (coin) => {
-		console.log(coin);
 		setSelectedCoin(coin);
 	};
 
@@ -22,7 +22,12 @@ function App() {
 				coinList={coins}
 				handleCoinChange={handleCoinChangeFromCoinPicker}
 			/>
-			<Charts coinList={coins} selectedCoin={selectedCoin} />
+
+			{!selectedCoin ? (
+				<BarChart coinList={coins} />
+			) : (
+				<LineChart selectedCoin={selectedCoin} />
+			)}
 		</div>
 	);
 }

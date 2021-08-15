@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Charts({ selectedCoin }) {
+export default function LineChart({ selectedCoin }) {
 	const classes = useStyles();
 
 	const [data, setData] = useState([]);
@@ -43,8 +43,6 @@ export default function Charts({ selectedCoin }) {
 			.catch(() => {});
 	}, [selectedCoin, selectTimeLine]);
 
-	console.log(data?.length, selectedCoin);
-
 	const datasets = [
 		{
 			data: data?.map(({ priceUsd }) => priceUsd),
@@ -54,31 +52,6 @@ export default function Charts({ selectedCoin }) {
 			fill: false,
 		},
 	];
-
-	const options = {
-		plugins: {
-			legend: {
-				labels: {
-					color: "#fff",
-					font: {
-						size: 18,
-					},
-				},
-			},
-		},
-		scales: {
-			x: {
-				ticks: {
-					color: "#fff",
-				},
-			},
-			y: {
-				ticks: {
-					color: "#fff",
-				},
-			},
-		},
-	};
 
 	const lineChart = data?.length ? (
 		<Line
@@ -134,3 +107,29 @@ export default function Charts({ selectedCoin }) {
 		</>
 	);
 }
+
+const options = {
+	plugins: {
+		legend: {
+			labels: {
+				color: "#fff",
+				font: {
+					size: 18,
+				},
+			},
+		},
+	},
+	scales: {
+		x: {
+			ticks: {
+				color: "#fff",
+			},
+		},
+		y: {
+			ticks: {
+				color: "#fff",
+			},
+			stacked: true,
+		},
+	},
+};
