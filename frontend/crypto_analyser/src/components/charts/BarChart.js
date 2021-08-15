@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
-import {
-	fetchInfoForCrypto,
-	fetchRatesForCrypto,
-} from "../../services/CryptoAPIService";
+import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
 import "./Charts.css";
 
 export default function BarChart({ coinList }) {
@@ -12,31 +8,39 @@ export default function BarChart({ coinList }) {
 	const [data, setData] = useState({});
 
 	const loadData = useCallback(async () => {
-		console.clear();
-		console.log("Fetching rates for each of them");
 		coinList?.forEach((coin) => {
 			fetchInfoForCrypto(coin)
 				.then((responseData) => {
 					setData((data) => {
-						return { ...data, [coin]: responseData.data };
+						if (
+							data[coin]?.priceUsd !==
+							responseData?.data?.priceUsd
+						)
+							return { ...data, [coin]: responseData.data };
+						else return data;
 					});
 				})
 				.catch((e) => {
-					console.log(e);
+					// console.log(e);
 				});
 		});
 	}, [coinList]);
 
 	useEffect(() => {
 		loadData().catch((e) => console.log(e));
+		// Set an interval to refresh information after every 30 seconds
+		const coinInfoloadingInterval = setInterval(() => {
+			loadData().catch((e) => console.log(e));
+		}, 1000 * 30);
 
-		return () => {};
+		return () => {
+			clearInterval(coinInfoloadingInterval);
+		};
 	}, [coinList, loadData]);
 
 	const loadPriceList = () => {
 		return coinList?.map((coin) => {
 			const coinInfo = data[coin];
-			console.log(coin, coinInfo);
 			return coinInfo?.priceUsd || 0;
 		});
 	};

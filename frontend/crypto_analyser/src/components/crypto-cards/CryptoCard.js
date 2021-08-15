@@ -29,7 +29,7 @@ export default function CryptoCard({ cryptoName }) {
 		// Set an interval to refresh information after every 30 seconds
 		const coinInfoloadingInterval = setInterval(() => {
 			loadData().catch((e) => console.log(e));
-		}, 1000 * 1000);
+		}, 1000 * 30);
 
 		return () => {
 			clearInterval(coinInfoloadingInterval);
@@ -58,7 +58,7 @@ export default function CryptoCard({ cryptoName }) {
 						prefix={"$"}
 						start={0}
 						end={coinInfo?.priceUsd}
-						duration={2.5}
+						duration={1}
 						separator=","
 						decimals={3}
 					/>
@@ -70,7 +70,7 @@ export default function CryptoCard({ cryptoName }) {
 						<CountUp
 							start={0}
 							end={coinInfo?.volumeUsd24Hr}
-							duration={2.5}
+							duration={1}
 							separator=","
 							decimals={3}
 						/>
@@ -89,7 +89,7 @@ export default function CryptoCard({ cryptoName }) {
 						<CountUp
 							start={0}
 							end={coinInfo?.changePercent24Hr}
-							duration={2.5}
+							duration={1}
 							separator=","
 							decimals={3}
 						/>
