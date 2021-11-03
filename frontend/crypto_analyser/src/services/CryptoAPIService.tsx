@@ -1,6 +1,8 @@
 import { axiosInstance } from "../config";
 
-export const fetchInfoForCrypto = async (cryptoName) => {
+
+
+export const fetchInfoForCrypto = async (cryptoName: string) => {
 	const URI = `https://api.coincap.io/v2/assets/${cryptoName}`;
 	// console.log(URI);
 
@@ -9,7 +11,7 @@ export const fetchInfoForCrypto = async (cryptoName) => {
 	});
 };
 
-export const fetchRatesForCrypto = async (cryptoName) => {
+export const fetchRatesForCrypto = async (cryptoName: string) => {
 	const URI = `https://api.coincap.io/v2/rates/${cryptoName}`;
 	// console.log(URI);
 

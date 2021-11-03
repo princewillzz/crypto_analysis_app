@@ -4,10 +4,14 @@ import CountUp from "react-countup";
 import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
 import "./CryptoCards.css";
 
-export default function CryptoCard({ cryptoName }) {
-	const [lastUpdatedAt, setLastUpdatedAt] = useState();
+interface CryptoCardProps {
+	cryptoName: string
+}
 
-	const [coinInfo, setCoinInfo] = useState(null);
+export default function CryptoCard({ cryptoName }: CryptoCardProps) {
+	const [lastUpdatedAt, setLastUpdatedAt] = useState<String>();
+
+	const [coinInfo, setCoinInfo] = useState<any>();
 
 	const loadData = useCallback(async () => {
 		// console.clear();

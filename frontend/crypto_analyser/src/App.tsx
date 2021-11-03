@@ -4,13 +4,14 @@ import BarChart from "./components/charts/BarChart";
 import LineChart from "./components/charts/LineChart";
 import CoinPicker from "./components/CoinPicker/CoinPicker";
 import CryptoCards from "./components/crypto-cards/CryptoCards";
+import { useCoinsData } from "./hooks/useCoinsData";
 
 function App() {
-	const [coins] = useState(["ethereum", "litecoin", "tron"]);
+	const [coins] = useState<string[]>(["ethereum", "litecoin", "tron"]);
 
 	const [selectedCoin, setSelectedCoin] = useState("");
 
-	const handleCoinChangeFromCoinPicker = (coin) => {
+	const handleCoinChangeFromCoinPicker = (coin:string) => {
 		setSelectedCoin(coin);
 	};
 

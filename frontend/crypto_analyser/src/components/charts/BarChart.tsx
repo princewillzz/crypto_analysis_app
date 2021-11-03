@@ -3,15 +3,19 @@ import { Bar } from "react-chartjs-2";
 import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
 import "./Charts.css";
 
-export default function BarChart({ coinList }) {
+interface BarChartProps {
+	coinList: string[]
+}
+
+export default function BarChart({ coinList }: BarChartProps) {
 	// const [data, setData] = useState(new Map());
-	const [data, setData] = useState({});
+	const [data, setData] = useState<any>({});
 
 	const loadData = useCallback(async () => {
 		coinList?.forEach((coin) => {
 			fetchInfoForCrypto(coin)
 				.then((responseData) => {
-					setData((data) => {
+					setData((data:any) => {
 						if (
 							data[coin]?.priceUsd !==
 							responseData?.data?.priceUsd
@@ -29,12 +33,12 @@ export default function BarChart({ coinList }) {
 	useEffect(() => {
 		loadData().catch((e) => console.log(e));
 		// Set an interval to refresh information after every 30 seconds
-		const coinInfoloadingInterval = setInterval(() => {
-			loadData().catch((e) => console.log(e));
-		}, 1000 * 30);
+		// const coinInfoloadingInterval = setInterval(() => {
+		// 	loadData().catch((e) => console.log(e));
+		// }, 1000 * 30);
 
 		return () => {
-			clearInterval(coinInfoloadingInterval);
+			// clearInterval(coinInfoloadingInterval);
 		};
 	}, [coinList, loadData]);
 

@@ -2,7 +2,12 @@ import { FormControl, NativeSelect } from "@material-ui/core";
 import React from "react";
 import "./CoinPicker.css";
 
-const CoinPicker = ({ coinList, handleCoinChange }) => {
+interface CoinPickerProps {
+	coinList: string[],
+	handleCoinChange: Function
+}
+
+const CoinPicker = ({ coinList, handleCoinChange }: CoinPickerProps) => {
 	const optionsOfCoins = () => {
 		const list = coinList.map((coin, index) => {
 			return (
