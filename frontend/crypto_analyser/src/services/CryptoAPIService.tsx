@@ -1,6 +1,15 @@
 import { axiosInstance } from "../config";
 
+export const fetchAllCryptoCoins = async () => {
+	const URI = `https://api.coincap.io/v2/assets`;
 
+	const response = await axiosInstance.get(URI);
+	if(response.status === 200) 
+		return response.data
+	else 
+		throw new Error("Unable to fetch coins");
+
+}
 
 export const fetchInfoForCrypto = async (cryptoName: string) => {
 	const URI = `https://api.coincap.io/v2/assets/${cryptoName}`;

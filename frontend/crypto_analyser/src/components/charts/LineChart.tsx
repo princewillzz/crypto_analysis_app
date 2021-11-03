@@ -3,9 +3,8 @@ import {
 	FormControlLabel,
 	makeStyles,
 	Radio,
-	RadioGroup,
+	RadioGroup
 } from "@material-ui/core";
-import { LineControllerChartOptions } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import "./Charts.css";
