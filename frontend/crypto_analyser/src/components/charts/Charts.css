@@ -3,17 +3,12 @@
 	justify-content: center;
 	width: 85%;
 	flex-direction: column;
+	margin-top: 2rem;
 	margin-bottom: 10rem;
+	gap: 2rem;
 }
 
-/* .timelineRadioSelectBtn { */
-/* background: red; */
-/* } */
 
-/* .radioGroup {
-	background: red;
-	display: flex;
-} */
 
 .formControlRadioSelect {
 	color: #fff;

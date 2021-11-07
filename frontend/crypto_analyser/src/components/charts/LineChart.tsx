@@ -3,7 +3,7 @@ import {
 	FormControlLabel,
 	makeStyles,
 	Radio,
-	RadioGroup,
+	RadioGroup
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
@@ -23,15 +23,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function LineChart({ selectedCoin }) {
+interface LineChartProps {
+	selectedCoin: string
+}
+
+export default function LineChart({ selectedCoin }: LineChartProps) {
 	const classes = useStyles();
 
 	const [data, setData] = useState([]);
 
 	const [selectTimeLine, setSelectTimeLine] = useState("h1");
 
-	const handleSelectTimeLineChange = (e) => {
-		setSelectTimeLine(e.target.value);
+	const handleSelectTimeLineChange = (e: any) => {
+		setSelectTimeLine(e.target?.value);
 	};
 
 	useEffect(() => {
