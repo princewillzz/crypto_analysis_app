@@ -28,7 +28,7 @@ function App() {
 	
 	const handleIncrementCoin = () => {
 		
-		if(coinForBarChart > 14) {
+		if(coinForBarChart > 29) {
 			setSnackbarOpen(true)
 			setSnackbarMessage("Cannot add more coins!!")
 			return;
@@ -60,7 +60,7 @@ function App() {
 
 			{!selectedCoin ? (
 				<BarChart 
-					coinList={growthCoinDirection? topGrowthCoins: topGrowthCoins.reverse()} 
+					coinList={topGrowthCoins.reverse()} 
 					positiveGrowth={growthCoinDirection}	
 					toggleGrowthDirection={() => setGrowthCoinDirection(!growthCoinDirection)}
 					incrementCoins={handleIncrementCoin}

@@ -1,4 +1,4 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
+import { ArrowDownOutlined, ArrowUpOutlined, LinkOutlined } from "@ant-design/icons";
 import { Box, Card, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
@@ -100,7 +100,7 @@ export default function CryptoCard({ coin, classNameString }: CryptoCardProps) {
 
 				<a href={coin.explorer} target="_blank" rel="noopener noreferrer" className={classes.link}>
 					<Typography color="textSecondary">
-							explore more
+							explore more <LinkOutlined />
 					</Typography>
 				</a>
 			</CardContent>

@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
 	numberChangeIcon: {
 		fontSize: 25,
 		marginInline: 8
-	}
+	},
+	
 }))
 
 export default function BarChart({ coinList, positiveGrowth, toggleGrowthDirection, incrementCoins, decrementCoins }: BarChartProps) {
@@ -31,7 +32,7 @@ export default function BarChart({ coinList, positiveGrowth, toggleGrowthDirecti
 		{
 			backgroundColor: ["pink", "blue", "red", "hotpink", "rgb(133, 235, 138)", "rgb(245, 235, 177)"],
 			data: coinList
-				?.map((_coin) => _coin.priceUsd)
+				?.map((_coin) => _coin.changePercent24Hr)
 		},
 	];
 
@@ -68,8 +69,8 @@ export default function BarChart({ coinList, positiveGrowth, toggleGrowthDirecti
 				<span>
 				{
 					positiveGrowth?
-					<ArrowUpOutlined onClick={() => toggleGrowthDirection()} style={{ color: "green" }} />:
-					<ArrowDownOutlined onClick={() => toggleGrowthDirection()} style={{ color: "red" }} />
+					<ArrowUpOutlined onClick={() => toggleGrowthDirection()} style={{ color: "green" }} className={'growthToggleIcon'} />:
+					<ArrowDownOutlined onClick={() => toggleGrowthDirection()} style={{ color: "red" }} className={'growthToggleIcon'} />
 				}
 				</span>
 			</Typography>
@@ -98,11 +99,15 @@ const options = {
 		x: {
 			ticks: {
 				color: "#fff",
+				
 			},
 		},
 		y: {
 			ticks: {
 				color: "#fff",
+				// callback: function(value:any, index:any, values:any) {
+				// 	return '$' + value;
+				// }
 			},
 			stacked: true,
 		},

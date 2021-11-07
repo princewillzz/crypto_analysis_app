@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { fetchCryptoHistoryData } from "../../services/CryptoAPIService";
 import "./Charts.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,12 +40,13 @@ export default function LineChart({ selectedCoin }: LineChartProps) {
 	};
 
 	useEffect(() => {
-		// setData(tempdata.data);
-		const URI = `https://api.coincap.io/v2/assets/${selectedCoin}/history?interval=${selectTimeLine}`;
-		fetch(URI)
-			.then((res) => res.json())
-			.then((data) => setData(data.data))
-			.catch(() => {});
+
+		fetchCryptoHistoryData(selectedCoin, selectTimeLine)
+			.then(responseData => {
+				setData(responseData.data)
+			})
+			.catch(() => {})
+
 	}, [selectedCoin, selectTimeLine]);
 
 	const datasets = [
@@ -132,6 +134,9 @@ const options = {
 		y: {
 			ticks: {
 				color: "#fff",
+				callback: function(value:any) {
+					return '$' + value;
+				}
 			},
 			stacked: true,
 		},
