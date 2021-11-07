@@ -10,6 +10,26 @@
 
 
 
+
 .formControlRadioSelect {
 	color: #fff;
+}
+
+.growthToggleIcon {
+	animation-name: grow;
+	animation-duration: 6s;
+	animation-iteration-count: infinite;
+	animation-delay: 3s;
+}
+
+@keyframes grow {
+    0% {
+		transform: scale(0.85) rotate(-180deg);
+	}
+	50% {
+		transform: scale(1.3) rotate(0deg);
+	}
+	100% {
+		transform: scale(0.8) rotate(-180deg);
+	}
 }

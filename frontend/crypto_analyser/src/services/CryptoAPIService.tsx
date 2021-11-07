@@ -1,7 +1,7 @@
 import { axiosInstance } from "../config";
 
 export const fetchAllCryptoCoins = async () => {
-	const URI = `https://api.coincap.io/v2/assets`;
+	const URI = `/assets`;
 
 	const response = await axiosInstance.get(URI);
 	if(response.status === 200) 
@@ -12,7 +12,7 @@ export const fetchAllCryptoCoins = async () => {
 }
 
 export const fetchInfoForCrypto = async (cryptoName: string) => {
-	const URI = `https://api.coincap.io/v2/assets/${cryptoName}`;
+	const URI = `/assets/${cryptoName}`;
 	// console.log(URI);
 
 	return axiosInstance.get(URI).then((res) => {
@@ -21,10 +21,19 @@ export const fetchInfoForCrypto = async (cryptoName: string) => {
 };
 
 export const fetchRatesForCrypto = async (cryptoName: string) => {
-	const URI = `https://api.coincap.io/v2/rates/${cryptoName}`;
+	const URI = `/rates/${cryptoName}`;
 	// console.log(URI);
 
 	return axiosInstance.get(URI).then((res) => {
 		return res.data;
 	});
 };
+
+export const fetchCryptoHistoryData = async (coinId: string, timeline: string) => {
+	const URI = `/assets/${coinId}/history?interval=${timeline}`;
+
+	return axiosInstance
+		.get(URI)
+		.then(res => res.data)
+
+}
