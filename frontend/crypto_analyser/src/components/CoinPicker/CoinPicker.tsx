@@ -1,32 +1,33 @@
-import { FormControl, MenuItem, Select } from "@material-ui/core";
+import { FormControl, makeStyles, MenuItem, Select } from "@material-ui/core";
 import React from "react";
 import { CoinData } from "../../interfaces/CoinData";
 
 interface CoinPickerProps {
 	coinList: CoinData[],
-	selectedCoin?: CoinData|null,
 	handleCoinChange: Function
 }
 
 
-// const useStyle = makeStyles((theme:any) => ({
-// 	container: {
-// 		marginTop: "5rem",
-// 		width: '30%',
-// 		marginBottom: '30px !important',
-// 		background: '#fff',
-// 		'@media (max-width:780px)': {
-// 			width: '70%',
-// 		},
-// 	},
-// 	selectBox: {
-// 		// margin: 10
-// 	}
-// }))
+const useStyle = makeStyles((theme:any) => ({
+	container: {
+		marginTop: "3rem",
+		width: 400,
+		marginBottom: '30px !important',
+		background: '#fff',
+		'@media (max-width:780px)': {
+			maxWidth: '80vw',
+		},
 
-const CoinPicker = ({ coinList, handleCoinChange, selectedCoin }: CoinPickerProps) => {
+	},
+	selectBox: {
+		maxHeight: 100,
+		paddingLeft: 10
+	}
+}))
 
-	// const classes = useStyle();
+const CoinPicker = ({ coinList, handleCoinChange }: CoinPickerProps) => {
+
+	const classes = useStyle();
 
 	const optionsOfCoins = () => {
 		const list = coinList
@@ -44,29 +45,24 @@ const CoinPicker = ({ coinList, handleCoinChange, selectedCoin }: CoinPickerProp
 
 	return (
 		<>
-		{/* <FormControl color={"secondary"} className={classes.container}>
-			<NativeSelect
-				defaultValue=""
-				onChange={(e) => handleCoinChange(e.target.value)}
-				className={classes.selectBox}
-			>
-				<option value="">Select</option>
-				{optionsOfCoins()}
-			</NativeSelect>
-		</FormControl> */}
 
-		<section style={{ width: 300 }}>
-			<FormControl fullWidth style={{ backgroundColor: "white" }}>
+			<FormControl 
+				fullWidth 
+				className={classes.container}
+			>
 				<Select
 					labelId="demo-simple-select-label"
 					id="demo-simple-select"
 					onChange={(e) => handleCoinChange(e.target.value)}
-					value={selectedCoin?.id}
+					defaultValue={-1}
+					className={classes.selectBox}
 				>
+					<MenuItem value={-1}>
+						Select a Coin
+					</MenuItem>
 					{optionsOfCoins()}
 				</Select>
 			</FormControl>
-		</section>
 		</>
 	);
 };

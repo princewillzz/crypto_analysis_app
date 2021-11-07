@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	GrowthSpan: {
 		fontSize: 16
+	},
+	link: {
+		textDecoration: "none",
 	}
 }))
 
@@ -95,9 +98,11 @@ export default function CryptoCard({ coin, classNameString }: CryptoCardProps) {
 					${_getNumberInRounded(coin.volumeUsd24Hr) }
 				</Typography>
 
-				{/* <Typography color="textSecondary" gutterBottom>
-					{lastUpdatedAt}
-				</Typography> */}
+				<a href={coin.explorer} target="_blank" rel="noopener noreferrer" className={classes.link}>
+					<Typography color="textSecondary">
+							explore more
+					</Typography>
+				</a>
 			</CardContent>
 		</Card>
 	);

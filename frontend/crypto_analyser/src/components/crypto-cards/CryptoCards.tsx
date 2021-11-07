@@ -12,7 +12,7 @@ interface CryptoCardsProps {
 	coins: CoinData[]
 }
 
-const CardclassNames:string[] = ["infected", "recovered", "deaths"]
+const CardclassNames:string[] = ["infected", "recovered", "deaths", "hotpink"]
 
 
 const useStyles = makeStyles((theme) => ({

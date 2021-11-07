@@ -1,74 +1,89 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { ArrowDownOutlined, ArrowUpOutlined, MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import { makeStyles, Typography } from "@material-ui/core";
+import React from "react";
 import { Bar } from "react-chartjs-2";
-import { fetchInfoForCrypto } from "../../services/CryptoAPIService";
+import { CoinData } from "../../interfaces/CoinData";
 import "./Charts.css";
 
 interface BarChartProps {
-	coinList: string[]
+	coinList: CoinData[],
+	positiveGrowth: boolean,
+	toggleGrowthDirection: Function,
+	incrementCoins: Function,
+	decrementCoins: Function
 }
 
-export default function BarChart({ coinList }: BarChartProps) {
-	// const [data, setData] = useState(new Map());
-	const [data, setData] = useState<any>({});
+const useStyles = makeStyles((theme) => ({
+	heading: {
+		color: "#fff", 
+	},
+	numberChangeIcon: {
+		fontSize: 25,
+		marginInline: 8
+	}
+}))
 
-	const loadData = useCallback(async () => {
-		coinList?.forEach((coin) => {
-			fetchInfoForCrypto(coin)
-				.then((responseData) => {
-					setData((data:any) => {
-						if (
-							data[coin]?.priceUsd !==
-							responseData?.data?.priceUsd
-						)
-							return { ...data, [coin]: responseData.data };
-						else return data;
-					});
-				})
-				.catch((e) => {
-					// console.log(e);
-				});
-		});
-	}, [coinList]);
+export default function BarChart({ coinList, positiveGrowth, toggleGrowthDirection, incrementCoins, decrementCoins }: BarChartProps) {
 
-	useEffect(() => {
-		loadData().catch((e) => console.log(e));
-		// Set an interval to refresh information after every 30 seconds
-		// const coinInfoloadingInterval = setInterval(() => {
-		// 	loadData().catch((e) => console.log(e));
-		// }, 1000 * 30);
-
-		return () => {
-			// clearInterval(coinInfoloadingInterval);
-		};
-	}, [coinList, loadData]);
-
-	const loadPriceList = () => {
-		return coinList?.map((coin) => {
-			const coinInfo = data[coin];
-			return coinInfo?.priceUsd || 0;
-		});
-	};
+	const classes = useStyles();
 
 	const datasets = [
 		{
-			backgroundColor: ["pink", "blue", "red"],
-			data: loadPriceList(),
+			backgroundColor: ["pink", "blue", "red", "hotpink", "rgb(133, 235, 138)", "rgb(245, 235, 177)"],
+			data: coinList
+				?.map((_coin) => _coin.priceUsd)
 		},
 	];
 
 	const barChart = (
 		<Bar
 			data={{
-				labels: coinList,
+				labels: coinList.map(_coin => _coin.id),
 				datasets: datasets,
 			}}
 			options={options}
 		/>
 	);
 
+	const _loadHeading = () => {
+
+		return (
+			<Typography variant="h4" align="center" className={classes.heading}>
+				Top 
+				<span>
+					<MinusSquareOutlined 
+						onClick={() => decrementCoins()}
+						className={classes.numberChangeIcon}
+						style={{ color: "red" }} 
+					/>
+					{coinList.length} 
+					<PlusSquareOutlined 
+						onClick={() => incrementCoins()}
+						className={classes.numberChangeIcon}
+						style={{ color: "greenyellow" }} 
+					/>
+				</span>
+				{ positiveGrowth? "High ": "Low " } 
+				Growth Coins 
+				<span>
+				{
+					positiveGrowth?
+					<ArrowUpOutlined onClick={() => toggleGrowthDirection()} style={{ color: "green" }} />:
+					<ArrowDownOutlined onClick={() => toggleGrowthDirection()} style={{ color: "red" }} />
+				}
+				</span>
+			</Typography>
+		)
+
+	}
+
 	return (
 		<>
-			<div className="container">{barChart}</div>
+			
+			<div className="container">
+				{_loadHeading()}
+				{barChart}
+			</div>
 		</>
 	);
 }
