@@ -12,25 +12,31 @@ function App() {
 
 	const coinsData:CoinData[] = useCoinsData();
 
-	const [selectedCoin, setSelectedCoin] = useState("");
+	const [selectedCoin, setSelectedCoin] = useState<CoinData|null>();
 
-	const handleCoinChangeFromCoinPicker = (coin:string) => {
-		setSelectedCoin(coin);
+	const handleCoinChangeFromCoinPicker = (selectedCoinId:string) => {
+		console.log(selectedCoinId);
+		
+		setSelectedCoin(coinsData?.find(_coin => _coin.id === selectedCoinId))
 	};
+
+	console.log(selectedCoin);
+	
 
 	return (
 		<div className="App">
 			<header className="App-header">Crypto Analyser</header>
 			
 			<CoinPicker
-				coinList={coins}
+				coinList={coinsData}
+				selectedCoin={selectedCoin}
 				handleCoinChange={handleCoinChangeFromCoinPicker}
 			/>
 
 			{!selectedCoin ? (
 				<BarChart coinList={coins} />
 			) : (
-				<LineChart selectedCoin={selectedCoin} />
+				<LineChart selectedCoin={selectedCoin.id} />
 			)}
 
 			<CryptoCards coins={coinsData} />

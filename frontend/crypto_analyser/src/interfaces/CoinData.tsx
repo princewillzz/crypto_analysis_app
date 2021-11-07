@@ -1,7 +1,14 @@
 export interface CoinData {
     id: string,
+    rank: string,
     symbol: string,
-    currencySymbol?: string | any,
-    rateUsd: string,
-    type?: string | any
+    name: string,
+    supply?: string,
+    maxSupply?: string,
+    marketCapUsd?: string,
+    volumeUsd24Hr?: string,
+    priceUsd: string,
+    changePercent24Hr?: string,
+    vwap24Hr?: string,
+    explorer?: string
 }

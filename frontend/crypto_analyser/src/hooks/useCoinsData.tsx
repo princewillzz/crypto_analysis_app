@@ -25,337 +25,117 @@ export const useCoinsData = (): CoinData[] => {
 }
 
 
-const demoData = {
+const demoData ={
     "data": [
     {
-    "id": "swedish-krona",
-    "symbol": "SEK",
-    "currencySymbol": "kr",
-    "type": "fiat",
-    "rateUsd": "0.1166814852152890"
-    },    
+    "id": "bitcoin",
+    "rank": "1",
+    "symbol": "BTC",
+    "name": "Bitcoin",
+    "supply": "18863493.0000000000000000",
+    "maxSupply": "21000000.0000000000000000",
+    "marketCapUsd": "1163669575471.5026733450052824",
+    "volumeUsd24Hr": "22313714427.1125202662241498",
+    "priceUsd": "61688.9764515778002168",
+    "changePercent24Hr": "-2.1268231210796471",
+    "vwap24Hr": "62401.8271654363611107",
+    "explorer": "https://blockchain.info/"
+    },
+    
     {
-    "id": "trinidad-and-tobago-dollar",
-    "symbol": "TTD",
-    "currencySymbol": "TT$",
-    "type": "fiat",
-    "rateUsd": "0.1474225670337784"
+    "id": "icon",
+    "rank": "94",
+    "symbol": "ICX",
+    "name": "ICON",
+    "supply": "673170680.0590113000000000",
+    "marketCapUsd": "1457809205.3068229636437144",
+    "volumeUsd24Hr": "55052844.0714801986428579",
+    "priceUsd": "2.1655863044704040",
+    "changePercent24Hr": "-5.1756318157714851",
+    "vwap24Hr": "2.2129790674951522",
+    "explorer": "https://tracker.icon.foundation/"
     },
     {
-    "id": "comorian-franc",
-    "symbol": "KMF",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0023516966088246"
+    "id": "ravencoin",
+    "rank": "95",
+    "symbol": "RVN",
+    "name": "Ravencoin",
+    "supply": "10012270000.0000000000000000",
+    "maxSupply": "21000000000.0000000000000000",
+    "marketCapUsd": "1448060704.3865774290060000",
+    "volumeUsd24Hr": "179435015.1398572610716776",
+    "priceUsd": "0.1446286111327978",
+    "changePercent24Hr": "10.8264936806872565",
+    "vwap24Hr": "0.1379308695859500",
+    "explorer": "https://ravencoin.network/"
     },
     {
-    "id": "saudi-riyal",
-    "symbol": "SAR",
-    "currencySymbol": "﷼",
-    "type": "fiat",
-    "rateUsd": "0.2665871881396427"
+    "id": "kadena",
+    "rank": "96",
+    "symbol": "KDA",
+    "name": "Kadena",
+    "supply": "156737531.4459000000000000",
+    "maxSupply": "1000000000.0000000000000000",
+    "marketCapUsd": "1427764156.4652500422688400",
+    "volumeUsd24Hr": "47069221.9537837072887448",
+    "priceUsd": "9.1092678524036946",
+    "changePercent24Hr": "15.4158059433398810",
+    "vwap24Hr": "8.4253166154830962",
+    "explorer": "https://explorer.chainweb.com/mainnet"
     },
     {
-    "id": "canadian-dollar",
-    "symbol": "CAD",
-    "currencySymbol": "$",
-    "type": "fiat",
-    "rateUsd": "0.8037519139342450"
+    "id": "audius",
+    "rank": "97",
+    "symbol": "AUDIO",
+    "name": "Audius",
+    "supply": "504078968.0000000000000000",
+    "marketCapUsd": "1359010390.0726521962560224",
+    "volumeUsd24Hr": "41897297.7781781988238901",
+    "priceUsd": "2.6960267663312868",
+    "changePercent24Hr": "4.0326407789951416",
+    "vwap24Hr": "2.5912428973003779",
+    "explorer": "https://etherscan.io/token/0x18aaa7115705e8be94bffebde57af9bfc265b998"
     },
     {
-    "id": "swiss-franc",
-    "symbol": "CHF",
-    "currencySymbol": "CHF",
-    "type": "fiat",
-    "rateUsd": "1.0955434388451220"
+    "id": "secret",
+    "rank": "98",
+    "symbol": "SCRT",
+    "name": "Secret",
+    "supply": "149815729.0000000000000000",
+    "marketCapUsd": "1345752302.8724493811260168",
+    "volumeUsd24Hr": "11790408.6618399166461982",
+    "priceUsd": "8.9827170475033992",
+    "changePercent24Hr": "-3.4743753276195344",
+    "vwap24Hr": "9.0413691108331767",
+    "explorer": "https://www.puzzle.report/"
     },
     {
-    "id": "iraqi-dinar",
-    "symbol": "IQD",
-    "currencySymbol": "د.ع",
-    "type": "fiat",
-    "rateUsd": "0.0006854449877741"
+    "id": "okb",
+    "rank": "99",
+    "symbol": "OKB",
+    "name": "OKB",
+    "supply": "60000000.0000000000000000",
+    "marketCapUsd": "1327773878.1713798880000000",
+    "volumeUsd24Hr": "242211604.5190859007210756",
+    "priceUsd": "22.1295646361896648",
+    "changePercent24Hr": "0.4720360010813175",
+    "vwap24Hr": "22.3674343327325696",
+    "explorer": "https://etherscan.io/token/0x75231f58b43240c9718dd58b4967c5114342a86c"
     },
     {
-    "id": "qatari-rial",
-    "symbol": "QAR",
-    "currencySymbol": "﷼",
-    "type": "fiat",
-    "rateUsd": "0.2730352316471861"
-    },
-    {
-    "id": "bulgarian-lev",
-    "symbol": "BGN",
-    "currencySymbol": "лв",
-    "type": "fiat",
-    "rateUsd": "0.5922714498508956"
-    },
-    {
-    "id": "fijian-dollar",
-    "symbol": "FJD",
-    "currencySymbol": "$",
-    "type": "fiat",
-    "rateUsd": "0.4805843906189927"
-    },
-    {
-    "id": "tajikistani-somoni",
-    "symbol": "TJS",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0887763126332422"
-    },
-    {
-    "id": "cuban-peso",
-    "symbol": "CUP",
-    "currencySymbol": "₱",
-    "type": "fiat",
-    "rateUsd": "0.0388349514563107"
-    },
-    {
-    "id": "afghan-afghani",
-    "symbol": "AFN",
-    "currencySymbol": "؋ ",
-    "type": "fiat",
-    "rateUsd": "0.0110864749927483"
-    },
-    {
-    "id": "egyptian-pound",
-    "symbol": "EGP",
-    "currencySymbol": "£",
-    "type": "fiat",
-    "rateUsd": "0.0635926003650215"
-    },
-    {
-    "id": "algerian-dinar",
-    "symbol": "DZD",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0072994880452963"
-    },
-    {
-    "id": "czech-republic-koruna",
-    "symbol": "CZK",
-    "currencySymbol": "Kč",
-    "type": "fiat",
-    "rateUsd": "0.0452806779423102"
-    },
-    {
-    "id": "waves",
-    "symbol": "WAVES",
-    "currencySymbol": null,
-    "type": "crypto",
-    "rateUsd": "25.7441391883764779"
-    },
-    {
-    "id": "new-zealand-dollar",
-    "symbol": "NZD",
-    "currencySymbol": "$",
-    "type": "fiat",
-    "rateUsd": "0.7136419073364529"
-    },
-    {
-    "id": "zimbabwean-dollar",
-    "symbol": "ZWL",
-    "currencySymbol": "$",
-    "type": "fiat",
-    "rateUsd": "0.0031055900621118"
-    },
-    {
-    "id": "yemeni-rial",
-    "symbol": "YER",
-    "currencySymbol": "﷼",
-    "type": "fiat",
-    "rateUsd": "0.0039960040279401"
-    },
-    {
-    "id": "armenian-dram",
-    "symbol": "AMD",
-    "currencySymbol": "֏",
-    "type": "fiat",
-    "rateUsd": "0.0020926303975496"
-    },
-    {
-    "id": "eritrean-nakfa",
-    "symbol": "ERN",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0666639112250027"
-    },
-    {
-    "id": "litecoin",
-    "symbol": "LTC",
-    "currencySymbol": null,
-    "type": "crypto",
-    "rateUsd": "199.9140203363250643"
-    },
-    {
-    "id": "moroccan-dirham",
-    "symbol": "MAD",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.1101975125115501"
-    },
-    {
-    "id": "iranian-rial",
-    "symbol": "IRR",
-    "currencySymbol": "﷼",
-    "type": "fiat",
-    "rateUsd": "0.0000236742424242"
-    },
-    {
-    "id": "mexican-peso",
-    "symbol": "MXN",
-    "currencySymbol": "$",
-    "type": "fiat",
-    "rateUsd": "0.0478161937860274"
-    },
-    {
-    "id": "zcash",
-    "symbol": "ZEC",
-    "currencySymbol": null,
-    "type": "crypto",
-    "rateUsd": "165.3544772784558124"
-    },
-    {
-    "id": "united-arab-emirates-dirham",
-    "symbol": "AED",
-    "currencySymbol": "فلس",
-    "type": "fiat",
-    "rateUsd": "0.2722570106180234"
-    },
-    {
-    "id": "lebanese-pound",
-    "symbol": "LBP",
-    "currencySymbol": "£",
-    "type": "fiat",
-    "rateUsd": "0.0006613493867344"
-    },
-    {
-    "id": "east-caribbean-dollar",
-    "symbol": "XCD",
-    "currencySymbol": "$",
-    "type": "fiat",
-    "rateUsd": "0.3700209061811993"
-    },
-    {
-    "id": "indian-rupee",
-    "symbol": "INR",
-    "currencySymbol": "₹",
-    "type": "fiat",
-    "rateUsd": "0.0134236685371922"
-    },
-    {
-    "id": "malagasy-ariary",
-    "symbol": "MGA",
-    "currencySymbol": "Ar",
-    "type": "fiat",
-    "rateUsd": "0.0002515253056062"
-    },
-    {
-    "id": "norwegian-krone",
-    "symbol": "NOK",
-    "currencySymbol": "kr",
-    "type": "fiat",
-    "rateUsd": "0.1173001264495363"
-    },
-    {
-    "id": "congolese-franc",
-    "symbol": "CDF",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0004970178926441"
-    },
-    {
-    "id": "uzbekistan-som",
-    "symbol": "UZS",
-    "currencySymbol": "лв",
-    "type": "fiat",
-    "rateUsd": "0.0000935057207169"
-    },
-    {
-    "id": "south-sudanese-pound",
-    "symbol": "SSP",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0076769537847382"
-    },
-    {
-    "id": "turkish-lira",
-    "symbol": "TRY",
-    "currencySymbol": "Kr",
-    "type": "fiat",
-    "rateUsd": "0.1031110883808445"
-    },
-    {
-    "id": "angolan-kwanza",
-    "symbol": "AOA",
-    "currencySymbol": "Kz",
-    "type": "fiat",
-    "rateUsd": "0.0016750418760469"
-    },
-    {
-    "id": "moldovan-leu",
-    "symbol": "MDL",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "0.0572497047203355"
-    },
-    {
-    "id": "hungarian-forint",
-    "symbol": "HUF",
-    "currencySymbol": "Ft",
-    "type": "fiat",
-    "rateUsd": "0.0032210645977322"
-    },
-    {
-    "id": "malawian-kwacha",
-    "symbol": "MWK",
-    "currencySymbol": "MK",
-    "type": "fiat",
-    "rateUsd": "0.0012263191412298"
-    },
-    {
-    "id": "kuwaiti-dinar",
-    "symbol": "KWD",
-    "currencySymbol": "ك",
-    "type": "fiat",
-    "rateUsd": "3.3145508783559827"
-    },
-    {
-    "id": "palladium-ounce",
-    "symbol": "XPD",
-    "currencySymbol": null,
-    "type": "fiat",
-    "rateUsd": "1992.9449747892460000"
-    },
-    {
-    "id": "saint-helena-pound",
-    "symbol": "SHP",
-    "currencySymbol": "£",
-    "type": "fiat",
-    "rateUsd": "1.3645506125467700"
-    },
-    {
-    "id": "azerbaijani-manat",
-    "symbol": "AZN",
-    "currencySymbol": "₼",
-    "type": "fiat",
-    "rateUsd": "0.5879568792424764"
-    },
-    {
-    "id": "euro",
-    "symbol": "EUR",
-    "currencySymbol": "€",
-    "type": "fiat",
-    "rateUsd": "1.1571167889546259"
-    },
-    {
-    "id": "indonesian-rupiah",
-    "symbol": "IDR",
-    "currencySymbol": "Rp",
-    "type": "fiat",
-    "rateUsd": "0.0000696906832227"
+    "id": "zilliqa",
+    "rank": "100",
+    "symbol": "ZIL",
+    "name": "Zilliqa",
+    "supply": "11954979691.7319100000000000",
+    "maxSupply": "21000000000.0000000000000000",
+    "marketCapUsd": "1315772928.4393696244042052",
+    "volumeUsd24Hr": "86072128.7606318227504863",
+    "priceUsd": "0.1100606577650116",
+    "changePercent24Hr": "-0.7900875588128541",
+    "vwap24Hr": "0.1096131200130964",
+    "explorer": "https://etherscan.io/token/0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27"
     }
     ],
-    "timestamp": 1635951225897
+    "timestamp": 1636027915810
     }

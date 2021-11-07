@@ -17,6 +17,8 @@ const CardclassNames:string[] = ["infected", "recovered", "deaths"]
 
 const useStyles = makeStyles((theme) => ({
 	searchBox: {
+		width: 300,
+		maxWidth: '90vw',
 		backgroundColor: "#fff",
 		borderRadius: 5,
 	},
@@ -29,7 +31,7 @@ const CryptoCards = ({ coins }: CryptoCardsProps) => {
 
 	const classes = useStyles();
 
-	const [searchValue, setSearchValue] = useState<string>('asd');
+	const [searchValue, setSearchValue] = useState<string>('');
 
 
 	const _coinFilter = (_coin:CoinData) => {
@@ -46,13 +48,8 @@ const CryptoCards = ({ coins }: CryptoCardsProps) => {
 		}
 
 		// filter on currencysymbol
-		if(!isValidFilter && _coin.currencySymbol) {
-			isValidFilter = _coin.currencySymbol.indexOf(searchValue) !== -1;
-		}
-
-		// filter on type
-		if(!isValidFilter) {
-			isValidFilter = _coin.type.indexOf(searchValue) !== -1;
+		if(!isValidFilter && _coin.symbol) {
+			isValidFilter = _coin.symbol.indexOf(searchValue) !== -1;
 		}
 
 		return isValidFilter;
